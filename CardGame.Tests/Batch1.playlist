@@ -1,0 +1,39 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="CardGame.Tests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="CardGame.Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="GameSpec" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="CardGame.Tests.GameSpec.DeckShouldBeShuffled" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CardGame.Tests.GameSpec.DeckShouldBeShuffled" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="CardGame.Tests.GameSpec.DeckShouldContainNCardsDividibleByTen" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CardGame.Tests.GameSpec.DeckShouldContainNCardsDividibleByTen(maxCapacity: 10)" />
+                        <Property Name="DisplayName" Value="CardGame.Tests.GameSpec.DeckShouldContainNCardsDividibleByTen(maxCapacity: 40)" />
+                        <Property Name="DisplayName" Value="CardGame.Tests.GameSpec.DeckShouldContainNCardsDividibleByTen(maxCapacity: 30)" />
+                        <Property Name="DisplayName" Value="CardGame.Tests.GameSpec.DeckShouldContainNCardsDividibleByTen(maxCapacity: 20)" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>
