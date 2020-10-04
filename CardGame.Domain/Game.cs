@@ -5,25 +5,19 @@ using System.Linq;
 
 namespace CardGame.Domain
 {
-    public class Game
+    public class Game : IGame
     {
-        public List<Player> Players { get; set; }
+        public List<IPlayer> Players { get; set; }
         public HashSet<Card> TemporarlyStash { get; set; }
         public Game()
         {
-            Players = new List<Player>();
+            Players = new List<IPlayer>();
             TemporarlyStash = new HashSet<Card>();
         }
-        public bool GameDone
-        {
-            get
-            {
-                return Players.Any(v => (v.DrawPile.Cards.Count + v.DiscardPile.Cards.Count) == 0);
-            }
-        }
+        public bool GameDone => Players.Any(v => (v.DrawPile.Cards.Count + v.DiscardPile.Cards.Count) == 0);
         public void Prepare(int deckCapacity)
         {
-            var deck = new Deck().Initialize(desiredCapacity: deckCapacity);
+            var deck = new Deck().Initialize(desiredCapacity: deckCapacity) as IDeck;
             deck.Mix();
             var piles = deck.DivideTheCardsForThePlayers();
             Players = Player.BuildPlayers(piles);
@@ -54,7 +48,11 @@ namespace CardGame.Domain
         }
         public void Round()
         {
-            var scores = new Dictionary<Player, Card>(Players.Count);
+            // refactor so that it includes all the players
+            // if all of them are equal only then stash
+            // otherwise the first one on the list wins
+            // remove the fucking dictionary
+            var scores = new Dictionary<IPlayer, Card>(Players.Count);
             foreach (var player in Players)
             {
                 Card card = player.DrawCard();
@@ -69,17 +67,25 @@ namespace CardGame.Domain
             }
 
             var winner = Confront(scores);
-            winner?.PopulateDiscardPile(cardsToGive);
             if (winner == null)
             {
                 Output.WriteLine(ConsoleColor.Yellow, "Tie");
                 TemporarlyStash.UnionWith(cardsToGive);
             }
+            else
+            {
+                winner.PopulateDiscardPile(cardsToGive);
+            }
             Output.WriteLine("****************************************");
         }
 
-        public static Player Confront(Dictionary<Player, Card> scores)
+        public static IPlayer Confront(Dictionary<IPlayer, Card> scores)
         {
+            /*foreach (var item in scores.Keys)
+            {
+
+            }*/
+
             if (scores.ElementAt(0).Value.Number.Value > scores.ElementAt(1).Value.Number.Value)
             {
                 Output.WriteLine(ConsoleColor.Green, $"{scores.ElementAt(0).Key.Nick} wins the round.");
@@ -102,5 +108,16 @@ namespace CardGame.Domain
             var winner = Players.Aggregate((p1, p2) => p1.DrawPile.Cards.Count > p2.DrawPile.Cards.Count ? p1 : p2);
             Output.WriteLine($"{winner.Nick} wins the game");
         }
+    }
+
+    public interface IGame
+    {
+        List<IPlayer> Players { get; set; }
+
+        void DisplayScore();
+        void EndGame();
+        void Play();
+        void Prepare(int deckCapacity);
+        void Round();
     }
 }

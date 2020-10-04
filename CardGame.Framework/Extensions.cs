@@ -25,7 +25,7 @@ namespace CardGame.Framework
                 sequence[swapIndex] = sequence[i];
             }
         }
-        public static List<List<T>> Split<T>(this List<T> collection, int size)
+        public static IList<List<T>> Split<T>(this List<T> collection, int size)
         {
             var chunks = new List<List<T>>();
             var chunkCount = collection.Count / size;

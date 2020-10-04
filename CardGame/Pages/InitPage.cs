@@ -9,8 +9,8 @@ namespace CardGame.Pages
 {
     sealed class InitPage : Page
     {
-        private Game _game;
-        public InitPage(Program program, Game game) : base(Strings.InitPage, program)
+        private IGame _game;
+        public InitPage(Program program, IGame game) : base(Strings.InitPage, program)
         {
             _game = game;
         }

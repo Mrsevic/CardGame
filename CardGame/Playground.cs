@@ -6,12 +6,9 @@ namespace CardGame
 {
     sealed class Playground
     {
-        Game Game { get; }
-        public Playground()
-        {
-            Game = new Game();
-        }
-        
+        IGame Game { get; }
+        public Playground() => Game = new Game();
+
         static Task Main(string[] args)
         {
             var playground = new Playground();

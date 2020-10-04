@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CardGame.Domain
 {
-    public class Player
+    public class Player : IPlayer
     {
         public Id Id { get; set; }
         public Pile DrawPile { get; set; }
@@ -29,10 +29,7 @@ namespace CardGame.Domain
             DiscardPile = new Pile();
         }
 
-        public Player(Id id) : this()
-        {
-            Id = id;
-        }
+        public Player(Id id) : this() => Id = id;
 
         public Card DrawCard()
         {
@@ -63,16 +60,17 @@ namespace CardGame.Domain
         {
             this.DiscardPile.Cards.AddRange(cards);
         }
-        public static List<Player> BuildPlayers(List<Pile> piles, int noPlayers = 2)
+        
+        public static List<IPlayer> BuildPlayers(List<Pile> piles, int noPlayers = 2)
         {
-            void EquipPlayer(Player player, Pile pile, int index)
+            void EquipPlayer(IPlayer player, Pile pile, int index)
             {
                 var nick = Input.ReadString($"Insert the name for the player No. {index.ToString()}:");
                 player.Nick = ValidateName(nick);
                 player.DrawPile = pile;
             }
 
-            var players = new List<Player>(noPlayers);
+            var players = new List<IPlayer>(noPlayers);
 
             for (int i = 0; i < noPlayers; i++)
             {
@@ -81,5 +79,16 @@ namespace CardGame.Domain
             }
             return players;
         }
+    }
+
+    public interface IPlayer
+    {
+        Pile DiscardPile { get; set; }
+        Pile DrawPile { get; set; }
+        Id Id { get; set; }
+        string Nick { get; set; }
+
+        Card DrawCard();
+        void PopulateDiscardPile(IEnumerable<Card> cards);
     }
 }

@@ -6,7 +6,7 @@ namespace CardGame
 {
     sealed class Menu : Program
     {
-        public Menu(Game game) : base(Strings.CardGame, breadcrumbHeader: true)
+        public Menu(IGame game) : base(Strings.CardGame, breadcrumbHeader: true)
         {
             AddPage(new TitlePage(this));
 

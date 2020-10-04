@@ -1,9 +1,7 @@
 ﻿using CardGame.Domain;
 using CardGame.Domain.Values;
-using EasyConsole;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace CardGame.Tests
@@ -79,7 +77,7 @@ namespace CardGame.Tests
             var card1 = new Card(new Id(Guid.NewGuid()), new CardNumber(10), new CardSuite(Suite.Club, ConsoleColor.Red));
             var card2 = new Card(new Id(Guid.NewGuid()), new CardNumber(4), new CardSuite(Suite.Spades, ConsoleColor.Black));
 
-            var scores = new Dictionary<Player, Card>(2) { {player1,  card1 }, { player2, card2 } };
+            var scores = new Dictionary<IPlayer, Card>(2) { {player1,  card1 }, { player2, card2 } };
             var winner = Game.Confront(scores);
             Assert.Equal("Vladimir", winner.Nick);
         }
@@ -96,9 +94,9 @@ namespace CardGame.Tests
 
             var card1 = new Card(new Id(Guid.NewGuid()), new CardNumber(4), new CardSuite(Suite.Club, ConsoleColor.Red));
             var card2 = new Card(new Id(Guid.NewGuid()), new CardNumber(4), new CardSuite(Suite.Club, ConsoleColor.Red));
-            var scores = new Dictionary<Player, Card>(2) { { player1, card1 }, { player2, card2 } };
+            var scores = new Dictionary<IPlayer, Card>(2) { { player1, card1 }, { player2, card2 } };
 
-            var game = new Game() { Players = new List<Player> { player1, player2} };
+            var game = new Game() { Players = new List<IPlayer> { player1, player2} };
             var winner = Game.Confront(scores);
             var cardsToGive = new List<Card> { card1, card2 };
             winner?.PopulateDiscardPile(cardsToGive);
@@ -107,7 +105,7 @@ namespace CardGame.Tests
                 game.TemporarlyStash.UnionWith(cardsToGive);
             }
             game.Round();
-            var winnersPile = game.Players.FirstOrDefault(v => v.DiscardPile.Cards.Count > 0).DiscardPile.Cards.Count;
+            var winnersPile = game.Players.Find(v => v.DiscardPile.Cards.Count > 0).DiscardPile.Cards.Count;
             Assert.Equal(4, winnersPile);
         }
     }
