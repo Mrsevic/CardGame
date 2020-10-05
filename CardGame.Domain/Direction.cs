@@ -1,7 +1,7 @@
 ﻿
 namespace CardGame.Domain
 {
-    public enum Direction
+    enum Direction
     {
         Top,
         Bottom,

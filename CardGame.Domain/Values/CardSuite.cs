@@ -7,8 +7,8 @@ namespace CardGame.Domain.Values
 {
     public class CardSuite : Value<CardSuite>
     {
-        public Suite Shape { get; }
-        public ConsoleColor Color { get; }
+        internal Suite Shape { get; }
+        internal ConsoleColor Color { get; }
 
         public CardSuite(Suite suite, ConsoleColor color)
         {
@@ -17,7 +17,7 @@ namespace CardGame.Domain.Values
             Shape = suite;
             Color = color;
         }
-        public static List<CardSuite> Suits => new List<CardSuite> { Club(), Spades(), Hearts(), Diamonds() };
+        internal static List<CardSuite> Suits => new List<CardSuite> { Club(), Spades(), Hearts(), Diamonds() };
 
         static CardSuite Club() =>
            new CardSuite(Suite.Club, ConsoleColor.Black);

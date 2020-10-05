@@ -6,7 +6,7 @@ namespace CardGame.Domain.Values
 {
     public class CardNumber : Value<CardNumber>
     {
-        public int Value { get; }
+        internal int Value { get; }
 
         public CardNumber(int value)
         {
@@ -17,12 +17,11 @@ namespace CardGame.Domain.Values
 
             Value = value;
         }
-
-        public static CardNumber FromString(string number) => new CardNumber(int.Parse(number));
+        static CardNumber FromString(string number) => new CardNumber(int.Parse(number));
 
     }
 
-   /* public enum CardName
+   /*  enum CardName
     {
         Ace = 1,
         Two = 2,

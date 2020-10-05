@@ -5,12 +5,14 @@ namespace CardGame.Domain
 {
     public class Card
     {
-        public Id Id { get; }
-        public CardNumber Number { get; }
-        public CardSuite Suite { get; }
-        public bool Empty { get; set; }
-        public static Card None => new Card { Empty = true };
+        Id Id { get; }
+        internal CardNumber Number { get; }
+        internal CardSuite Suite { get; }
+        internal bool Empty { get; set; }
+        internal static Card None => new Card { Empty = true };
+
         public Card() { }
+
         public Card(Id id, CardNumber number, CardSuite suite)
         {
             Id = id;
@@ -18,7 +20,7 @@ namespace CardGame.Domain
             Suite = suite;
         }
 
-        public string DisplayCardValue()
+        internal string DisplayCardValue()
         {
             return $"{Number.Value.ToString()} of {Suite.Color.ToString()} {Suite.Shape.ToString()}";
         }

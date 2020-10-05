@@ -8,7 +8,7 @@ namespace CardGame.Framework
 {
     public abstract class Value<T> where T : Value<T>
     {
-        private static readonly Member[] Members = GetMembers().ToArray();
+        static readonly Member[] Members = GetMembers().ToArray();
 
         public override bool Equals(object other)
         {

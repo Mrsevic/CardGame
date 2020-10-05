@@ -8,6 +8,6 @@ namespace CardGame.Domain
 
         public Pile() => Cards = new List<Card>();
 
-        public Pile(List<Card> cards) => Cards = cards;
+        internal Pile(List<Card> cards) => Cards = cards;
     }
 }

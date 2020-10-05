@@ -14,7 +14,7 @@ namespace CardGame.Domain
             Players = new List<IPlayer>();
             TemporarlyStash = new HashSet<Card>();
         }
-        public bool GameDone => Players.Any(v => (v.DrawPile.Cards.Count + v.DiscardPile.Cards.Count) == 0);
+        bool GameDone => Players.Any(v => (v.DrawPile.Cards.Count + v.DiscardPile.Cards.Count) == 0);
         public void Prepare(int deckCapacity)
         {
             var deck = new Deck().Initialize(desiredCapacity: deckCapacity) as IDeck;
@@ -74,7 +74,6 @@ namespace CardGame.Domain
             }
             Output.WriteLine("****************************************");
         }
-
         public static IPlayer Confront(Dictionary<IPlayer, Card> scores)
         {
             /*foreach (var item in scores.Keys)
@@ -87,17 +86,13 @@ namespace CardGame.Domain
                 Output.WriteLine(ConsoleColor.Green, $"{scores.ElementAt(0).Key.Nick} wins the round.");
                 return scores.ElementAt(0).Key;
             }
-            else if (scores.ElementAt(0).Value.Number.Value < scores.ElementAt(1).Value.Number.Value)
+            if (scores.ElementAt(0).Value.Number.Value < scores.ElementAt(1).Value.Number.Value)
             {
                 Output.WriteLine(ConsoleColor.Green, $"{scores.ElementAt(1).Key.Nick} wins the round.");
                 return scores.ElementAt(1).Key;
             }
-            else
-            {
-                return Player.None;
-            }
+            return Player.None;
         }
-
         public void EndGame()
         {
             Output.WriteLine($"The game has ended. {Environment.NewLine}");
@@ -108,7 +103,7 @@ namespace CardGame.Domain
 
     public interface IGame
     {
-        List<IPlayer> Players { get; set; }
+        List<IPlayer> Players { get; }
 
         void DisplayScore();
         void EndGame();

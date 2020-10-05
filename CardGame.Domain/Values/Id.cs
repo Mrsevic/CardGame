@@ -6,7 +6,7 @@ namespace CardGame.Domain.Values
 {
     public class Id : Value<Id>
     {
-        public Guid Value { get; }
+        Guid Value { get; }
 
         public Id(Guid value)
         {

@@ -72,6 +72,7 @@ namespace CardGame.Domain
             return (capacity, noPlayers);
         }
     }
+
     public interface IDeck
     {
         List<Card> TotalCards { get; set; }

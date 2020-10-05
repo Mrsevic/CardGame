@@ -16,7 +16,7 @@ namespace CardGame.Domain
         public bool Empty { get; set; }
         public static Player None => new Player { Empty = true };
 
-        public static string ValidateName(string player)
+        static string ValidateName(string player)
         {
             while (string.IsNullOrEmpty(player) || string.IsNullOrWhiteSpace(player))
             {
@@ -31,7 +31,14 @@ namespace CardGame.Domain
             DiscardPile = new Pile();
         }
 
-        public Player(Id id) : this() => Id = id;
+        public Player(Id id, Pile pile, string nick): this()
+        {
+            Id = id;
+            DrawPile = pile;
+            Nick = nick;
+        }
+
+        Player(Id id) : this() => Id = id;
 
         public Card DrawCard()
         {
@@ -63,21 +70,16 @@ namespace CardGame.Domain
             this.DiscardPile.Cards.AddRange(cards);
         }
 
-        public static List<IPlayer> BuildPlayers(List<Pile> piles, int noPlayers = 2)
+        internal static List<IPlayer> BuildPlayers(List<Pile> piles, int noPlayers = 2)
         {
-            void EquipPlayer(IPlayer player, Pile pile, int index)
-            {
-                var nick = Input.ReadString($"Insert the name for the player No. {index.ToString()}:");
-                player.Nick = ValidateName(nick);
-                player.DrawPile = pile;
-            }
-
             var players = new List<IPlayer>(noPlayers);
 
             for (int i = 0; i < noPlayers; i++)
             {
                 players.Add(new Player(new Id(Guid.NewGuid())));
-                EquipPlayer(players[i], piles[i], i);
+                var nick = Input.ReadString($"Insert the name for the player No. {i.ToString()}:");
+                players[i].Nick = ValidateName(nick);
+                players[i].DrawPile = piles[i];
             }
             return players;
         }
@@ -91,6 +93,7 @@ namespace CardGame.Domain
         bool Empty { get; set; }
         string Nick { get; set; }
         Card DrawCard();
+
         void PopulateDiscardPile(IEnumerable<Card> cards);
     }
 }
