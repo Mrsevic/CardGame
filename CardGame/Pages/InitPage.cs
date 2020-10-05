@@ -9,8 +9,8 @@ namespace CardGame.Pages
 {
     sealed class InitPage : Page
     {
-        private Game _game;
-        public InitPage(Program program, Game game) : base(Strings.InitPage, program)
+        IGame _game;
+        public InitPage(Program program, IGame game) : base(Strings.InitPage, program)
         {
             _game = game;
         }
@@ -24,13 +24,13 @@ namespace CardGame.Pages
             Output.WriteLine($"You wrote: {deckCapacity.ToString()}");
             _game.Prepare(deckCapacity);
             Output.WriteLine(ConsoleColor.Green, $"Players ready for the game: {Environment.NewLine}");
-        
+
             for (int i = 0; i < _game.Players.Count; i++)
             {
                 Output.WriteLine($"Player No. {i.ToString()} with nick {_game.Players[i].Nick} {Environment.NewLine}");
             }
 
-            bool confirm = string.Equals(Input.ReadString("Do you want to commence the game ? (Y/N)"), "Y", StringComparison.OrdinalIgnoreCase);
+            bool confirm = string.Equals(Input.ReadString(Strings.StartGame), "Y", StringComparison.OrdinalIgnoreCase);
 
             if (confirm)
             {
@@ -38,7 +38,7 @@ namespace CardGame.Pages
             }
             else
             {
-                Input.ReadString("Press [Enter] to navigate home");
+                Input.ReadString(Strings.BackToHome);
                 await Program.NavigateHome(cancellationToken);
             }
         }

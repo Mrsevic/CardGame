@@ -70,6 +70,15 @@ namespace CardGame.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press [Enter] to navigate home.
+        /// </summary>
+        public static string BackToHome {
+            get {
+                return ResourceManager.GetString("BackToHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Card Game.
         /// </summary>
         public static string CardGame {
@@ -156,6 +165,15 @@ namespace CardGame.Domain.Resources {
         public static string PlayPage {
             get {
                 return ResourceManager.GetString("PlayPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to commence the game? (Y/N).
+        /// </summary>
+        public static string StartGame {
+            get {
+                return ResourceManager.GetString("StartGame", resourceCulture);
             }
         }
         

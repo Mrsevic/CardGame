@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace CardGame.Domain
 {
-    public class Deck
+    public class Deck : IDeck
     {
         public List<Card> TotalCards { get; set; }
 
@@ -49,7 +49,7 @@ namespace CardGame.Domain
             return cardsGroupped;
         }
 
-        private (int, int) EnsureValidity(int capacity, int noPlayers)
+        (int, int) EnsureValidity(int capacity, int noPlayers)
         {
             while (capacity < 10)
             {
@@ -71,5 +71,12 @@ namespace CardGame.Domain
 
             return (capacity, noPlayers);
         }
+    }
+    public interface IDeck
+    {
+        List<Card> TotalCards { get; set; }
+        List<Pile> DivideTheCardsForThePlayers(int noPlayers = 2);
+        Deck Initialize(int desiredCapacity, int noPlayers = 2);
+        void Mix();
     }
 }

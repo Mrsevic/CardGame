@@ -17,18 +17,18 @@ namespace CardGame.Domain.Values
             Shape = suite;
             Color = color;
         }
-        public static List<CardSuite> Suits => new List<CardSuite>() { Club(), Spades(), Hearts(), Diamonds() };
+        public static List<CardSuite> Suits => new List<CardSuite> { Club(), Spades(), Hearts(), Diamonds() };
 
-        private static CardSuite Club() =>
+        static CardSuite Club() =>
            new CardSuite(Suite.Club, ConsoleColor.Black);
 
-        private static CardSuite Spades() =>
+        static CardSuite Spades() =>
             new CardSuite(Suite.Spades, ConsoleColor.Black);
 
-        private static CardSuite Hearts() =>
+        static CardSuite Hearts() =>
             new CardSuite(Suite.Hearts, ConsoleColor.Red);
 
-        private static CardSuite Diamonds() =>
+        static CardSuite Diamonds() =>
             new CardSuite(Suite.Diamonds, ConsoleColor.Red);
     }
 

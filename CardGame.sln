@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGame.Domain", "CardGame
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGame.Framework", "CardGame.Framework\CardGame.Framework.csproj", "{D24E5961-F523-4734-97BB-F4BA79B50D8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame.Tests", "CardGame.Tests\CardGame.Tests.csproj", "{F08A8D75-F5DA-45A0-B3CC-5A1CDBF78E33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGame.Tests", "CardGame.Tests\CardGame.Tests.csproj", "{F08A8D75-F5DA-45A0-B3CC-5A1CDBF78E33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC2EE9BC-565F-43AC-9EDE-F5BF03C2B5D7}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -120,6 +120,9 @@
   <data name="AnotherGame" xml:space="preserve">
     <value>Press [Enter] to play another game</value>
   </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>Press [Enter] to navigate home</value>
+  </data>
   <data name="CardGame" xml:space="preserve">
     <value>Card Game</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="PlayPage" xml:space="preserve">
     <value>Roll the dice</value>
+  </data>
+  <data name="StartGame" xml:space="preserve">
+    <value>Do you want to commence the game? (Y/N)</value>
   </data>
   <data name="TitlePage" xml:space="preserve">
     <value>Welcome</value>

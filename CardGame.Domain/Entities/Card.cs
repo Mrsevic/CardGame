@@ -9,8 +9,8 @@ namespace CardGame.Domain
         public CardNumber Number { get; }
         public CardSuite Suite { get; }
         public bool Empty { get; set; }
+        public static Card None => new Card { Empty = true };
         public Card() { }
-        public static Card Null => new Card { Empty = true};
         public Card(Id id, CardNumber number, CardSuite suite)
         {
             Id = id;

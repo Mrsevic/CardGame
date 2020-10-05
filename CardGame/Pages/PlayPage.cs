@@ -8,9 +8,9 @@ namespace CardGame.Pages
 {
     sealed class PlayPage : Page
     {
-        private Game _game;
+        IGame _game;
 
-        public PlayPage(Program program, Game game) : base(Strings.PlayPage, program)
+        public PlayPage(Program program, IGame game) : base(Strings.PlayPage, program)
         {
             _game = game;
         }

@@ -20,10 +20,9 @@ namespace CardGame.Domain.Values
 
         public static CardNumber FromString(string number) => new CardNumber(int.Parse(number));
 
-        public static implicit operator string(CardNumber cardNumber) => cardNumber.Value.ToString();
     }
 
-    public enum CardName
+   /* public enum CardName
     {
         Ace = 1,
         Two = 2,
@@ -38,5 +37,5 @@ namespace CardGame.Domain.Values
         Jack = 11,
         Queen = 12,
         King = 13,
-    }
+    }*/
 }
